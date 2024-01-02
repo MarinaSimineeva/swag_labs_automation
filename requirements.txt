@@ -1,0 +1,3 @@
+pytest
+python-decouple
+playwright~=1.40.0
