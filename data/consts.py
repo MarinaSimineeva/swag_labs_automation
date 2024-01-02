@@ -1,4 +1,7 @@
 class Consts:
+    URL = 'https://www.saucedemo.com/'
+    INVENTORY_URL = f'{URL}inventory.html'
+
     auth_page_title = 'Swag Labs'
 
     standard_user = {'name': 'standard_user', 'password': 'secret_sauce'}
