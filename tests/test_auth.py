@@ -1,8 +1,7 @@
 import allure
 import pytest
 from playwright.sync_api import expect
-from pages.auth_page import AuthPage
-from data.consts import Consts
+from helpers.login_user import *
 
 
 @allure.story('Авторизация')
@@ -11,10 +10,7 @@ from data.consts import Consts
                                                 (Consts.visual_user['name'], Consts.visual_user['password'])])
 def test_positive_auth_scenario(browser, username, password):
     allure.dynamic.title(f'Проверяем успешную авторизацию пользователем: {username}')
-    browser.goto(Consts.URL)
-    auth_page = AuthPage(browser)
-
-    auth_page.pass_auth(username, password)
+    login_user(browser, username, password)
     with allure.step('Проверяем переход в каталог после успешной авторизации'):
         expect(browser).to_have_url(Consts.INVENTORY_URL)
 
@@ -23,10 +19,8 @@ def test_positive_auth_scenario(browser, username, password):
 @allure.title('Проверяем, что для заблокированного юзера не проходит авторизация')
 @pytest.mark.positive
 def test_auth_not_passed_locked_user(browser):
-    browser.goto(Consts.URL)
+    login_user(browser, Consts.locked_out_user['name'], Consts.locked_out_user['password'])
     auth_page = AuthPage(browser)
-
-    auth_page.pass_auth(Consts.locked_out_user['name'], Consts.locked_out_user['password'])
     auth_page.check_error_alert(Consts.error_locked_user)
     with allure.step('Проверяем отсутствие перехода в каталог при ошибке авторизации'):
         expect(browser).to_have_url(Consts.URL)
@@ -56,10 +50,9 @@ def test_auth_not_passed_username_errors(browser, username, password):
     exp_error = Consts.error_no_username if username == '' else Consts.error_wrong_creds
 
     allure.dynamic.title(f'Проверяем ошибку авторизации : {user_str}')
-    browser.goto(Consts.URL)
+    login_user(browser, username, password)
     auth_page = AuthPage(browser)
 
-    auth_page.pass_auth(username, password)
     auth_page.check_error_alert(exp_error)
     with allure.step('Проверяем отсутствие перехода в каталог при ошибке авторизации'):
         expect(browser).to_have_url(Consts.URL)
@@ -76,10 +69,8 @@ def test_auth_not_passed_password_errors(browser, username, password):
 
     allure.dynamic.title(f'Проверяем ошибку авторизации : {user_str}')
 
-    browser.goto(Consts.URL)
+    login_user(browser, username, password)
     auth_page = AuthPage(browser)
-
-    auth_page.pass_auth(username, password)
     auth_page.check_error_alert(exp_error)
     with allure.step('Проверяем отсутствие перехода в каталог при ошибке авторизации'):
         expect(browser).to_have_url(Consts.URL)

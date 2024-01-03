@@ -1,10 +1,10 @@
 import allure
 from playwright.sync_api import Page, expect
-from pages.base import Base
+from pages.base import BasePage
 from locators.auth_page_locators import AuthLocators
 
 
-class AuthPage(Base):
+class AuthPage(BasePage):
     def __init__(self, page: Page):
         super().__init__(page)
         self.auth_title = page.locator(AuthLocators.auth_title)

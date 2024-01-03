@@ -1,8 +1,11 @@
 class Consts:
     URL = 'https://www.saucedemo.com/'
     INVENTORY_URL = f'{URL}inventory.html'
+    CART_URL = f'{URL}cart.html'
+    CHECKOUT_URL = f'{URL}checkout-step-one.html'
 
     auth_page_title = 'Swag Labs'
+    app_title = 'Swag Labs'
 
     standard_user = {'name': 'standard_user', 'password': 'secret_sauce'}
     visual_user = {'name': 'visual_user', 'password': 'secret_sauce'}
@@ -16,3 +19,6 @@ class Consts:
     error_no_password = 'Epic sadface: Password is required'
     error_wrong_creds = 'Epic sadface: Username and password do not match any user in this service'
     error_locked_user = 'Epic sadface: Sorry, this user has been locked out.'
+
+    cart_checkout_btn = 'Checkout'
+    cart_continue_shopping_btn = 'Continue Shopping'
