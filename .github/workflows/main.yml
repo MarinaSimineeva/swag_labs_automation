@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: false
   
 jobs:
-  run-tests-job:
+  build:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -45,13 +45,29 @@ jobs:
       run: |
          allure generate allure-results --clean -o allure-report  
          allure-combine ./allure-report --dest ./tmp/result --auto-create-folders
-    
-          
-    - name: Deploy to GitHub Pages
-      uses: actions/configure-pages@v1
-    - uses: actions/upload-pages-artifact@v1
+    - uses: actions/upload-artifact@master
       with:
-        path: ./tmp/result/
-    - id: deployment
-      uses: actions/deploy-pages@v4
+        name: test-report
+        path: ./tmp/results/complete.html
+        if-no-files-found: error
+         
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+        name: github-pages
+        url: ${{ steps.deployment.outputs.page_url }}
+          
+    steps:
+      - uses: actions/download-artifact@master
+        with:
+           name: test-report
+           path: .
+      - uses: actions/configure-pages@v1
+      - uses: actions/upload-pages-artifact@v1
+        with:
+           path: ./tmp/result
+      - id: deployment
+        uses: actions/deploy-pages@main
+    
   
