@@ -50,7 +50,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
          name: tests-report
-         path: output/tmp/result/complete.html
+         path: ./tmp/result/complete.html
          retention-days: 30
 
 
