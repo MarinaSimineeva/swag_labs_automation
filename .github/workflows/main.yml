@@ -45,7 +45,7 @@ jobs:
       run: |
          allure generate allure-results --clean -o allure-report  
          allure-combine ./allure-report --dest ./tmp/result --auto-create-folders
-    - uses: actions/upload-artifact@master
+    - uses: actions/upload-artifact@v4
       with:
         name: test-report
         path: ./tmp/result/
@@ -59,7 +59,7 @@ jobs:
         url: ${{ steps.deployment.outputs.page_url }}
           
     steps:
-      - uses: actions/download-artifact@master
+      - uses: actions/download-artifact@v4
         with:
            name: test-report
            path: ./artifacts/
@@ -68,6 +68,6 @@ jobs:
         with:
            path: ./artifacts/
       - id: deployment
-        uses: actions/deploy-pages@main
+        uses: actions/deploy-pages@v4
     
   
