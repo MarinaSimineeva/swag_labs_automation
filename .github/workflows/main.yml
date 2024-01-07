@@ -15,5 +15,5 @@ jobs:
     - run: playwright install 
     - run: pytest tests
       env:
-         HEADLESS: true
+         HEADLESS: 'true'
   
