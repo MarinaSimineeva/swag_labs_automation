@@ -48,7 +48,7 @@ jobs:
     - uses: actions/upload-artifact@master
       with:
         name: test-report
-        path: ./tmp/results/complete.html
+        path: ./tmp/result/complete.html
         if-no-files-found: error
          
   deploy:
