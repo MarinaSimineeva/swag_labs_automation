@@ -1,6 +1,8 @@
 name: run-tests-workflow
+
 on: 
-  workflow_dispatch:
+  workflow_dispatch
+  
 jobs:
   run-tests-job:
     runs-on: ubuntu-latest
@@ -12,4 +14,6 @@ jobs:
     - run: pip install -r requirements.txt
     - run: playwright install 
     - run: pytest tests
+      env:
+         HEADLESS: true
   
