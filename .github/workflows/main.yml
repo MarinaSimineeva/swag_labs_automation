@@ -49,9 +49,9 @@ jobs:
           
     - name: Deploy to GitHub Pages
       uses: actions/configure-pages@v1
-    - uses: actions/upload-pages-artifact@v4
+    - uses: actions/upload-pages-artifact@v1
       with:
         path: ./tmp/result/
     - id: deployment
-      uses: actions/deploy-pages@main
+      uses: actions/deploy-pages@v4
   
