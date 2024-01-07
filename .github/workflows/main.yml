@@ -62,11 +62,11 @@ jobs:
       - uses: actions/download-artifact@master
         with:
            name: test-report
-           path: .
+           path: ./artifacts/
       - uses: actions/configure-pages@v1
       - uses: actions/upload-pages-artifact@v1
         with:
-           path: test-report
+           path: ./artifacts/test-report
       - id: deployment
         uses: actions/deploy-pages@main
     
