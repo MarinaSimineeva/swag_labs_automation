@@ -22,4 +22,7 @@ jobs:
       run: pytest tests --alluredir=allure-results
       env:
          HEADLESS: 'true'
+
+    - name: Combine report
+      run: allure-combine ./allure-results --dest /tmp/result --auto-create-folders
   
