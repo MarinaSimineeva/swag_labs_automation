@@ -46,11 +46,10 @@ jobs:
          allure generate allure-results --clean -o allure-report  
          allure-combine ./allure-report --dest ./tmp/result --auto-create-folders
 
-    - uses: actions/checkout@v4
     - name: Configure github pages
       uses: actions/upload-pages-artifact@v3
       with:
-          path: '/tmp/result/complete.html'
+          path: './tmp/result/complete.html'
           
     - name: Deploy to GitHub Pages
       id: deployment
