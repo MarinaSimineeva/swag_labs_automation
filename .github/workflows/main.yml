@@ -8,12 +8,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - uses: actions/setup-python@v4
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
       with:
         python-version: '3.10'
-    - run: pip install -r requirements.txt
-    - run: playwright install 
-    - run: pytest tests
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+        playwright install 
+
+    - name: Run tests
+      run: pytest tests --alluredir=allure-results
       env:
          HEADLESS: 'true'
   
