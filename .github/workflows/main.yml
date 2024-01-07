@@ -64,7 +64,7 @@ jobs:
            name: test-report
            path: ./artifacts/
       - uses: actions/configure-pages@v1
-      - uses: actions/upload-pages-artifact@v1
+      - uses: actions/upload-pages-artifact@v2
         with:
            path: ./artifacts/
       - id: deployment
