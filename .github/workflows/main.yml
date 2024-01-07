@@ -54,7 +54,7 @@ jobs:
          retention-days: 30
           
     - name: Deploy to GitHub Pages
-    - uses: actions/download-artifact@master
+      uses: actions/download-artifact@master
       with:
         name: tests-report
         path: .
