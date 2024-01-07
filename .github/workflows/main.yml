@@ -2,10 +2,22 @@ name: run-tests-workflow
 
 on: 
   workflow_dispatch
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
   
 jobs:
   run-tests-job:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python 3.10
@@ -33,4 +45,14 @@ jobs:
       run: |
          allure generate allure-results --clean -o allure-report  
          allure-combine ./allure-report --dest ./tmp/result --auto-create-folders
+
+    - uses: actions/checkout@v4
+    - name: Configure github pages
+      uses: actions/upload-pages-artifact@v3
+      with:
+          path: './tmp/result/complete.html'
+          
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
   
