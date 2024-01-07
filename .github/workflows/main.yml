@@ -48,7 +48,7 @@ jobs:
     - uses: actions/upload-artifact@master
       with:
         name: test-report
-        path: ./tmp/result/complete.html
+        path: ./tmp/result/
         if-no-files-found: error
          
   deploy:
@@ -66,7 +66,7 @@ jobs:
       - uses: actions/configure-pages@v1
       - uses: actions/upload-pages-artifact@v1
         with:
-           path: ./tmp/result
+           path: ./test-report/
       - id: deployment
         uses: actions/deploy-pages@main
     
