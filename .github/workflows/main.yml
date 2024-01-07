@@ -47,19 +47,21 @@ jobs:
          allure-combine ./allure-report --dest ./tmp/result --auto-create-folders
     
     - name: Save the report
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@master
       with:
          name: tests-report
          path: ./tmp/result/complete.html
          retention-days: 30
-
-
-    - name: Configure github pages
-      uses: actions/upload-pages-artifact@v3
-      with:
-          path: 'output/tmp/result/complete.html'
           
     - name: Deploy to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@v4
+    - uses: actions/download-artifact@master
+      with:
+        name: tests-report
+        path: .
+    - uses: actions/configure-pages@v1
+    - uses: actions/upload-pages-artifact@v1
+      with:
+        path: .
+    - id: deployment
+      uses: actions/deploy-pages@main
   
