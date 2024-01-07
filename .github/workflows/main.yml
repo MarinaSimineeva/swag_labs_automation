@@ -16,7 +16,10 @@ jobs:
     - name: Install dependencies
       run: |
         pip install -r requirements.txt
-        playwright install 
+        playwright install
+
+    - name: Set up Allure
+      run: |
         sudo apt-get install default-jre
         wget https://github.com/allure-framework/allure2/releases/download/2.18.1/allure_2.18.1-1_all.deb
         sudo dpkg -i allure_2.18.1-1_all.deb
