@@ -5,6 +5,11 @@ This project is representing test automation solution sample for:
 - Swag Labs Cart screen (partially): https://www.saucedemo.com/cart.html
 
 Tests can be launched from github actions.
+
+To execute tests with default configuration:
+1. navigate to run-tests-workflow: https://github.com/MarinaSimineeva/swag_labs_automation/actions/workflows/main.yml
+2. click 'run workflow'
+
 Latest run report can be found on Github Pages, here: https://marinasimineeva.github.io/swag_labs_automation/ 
 
 Test design mind map:

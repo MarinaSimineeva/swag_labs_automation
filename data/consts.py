@@ -4,6 +4,11 @@ class Consts:
     CART_URL = f'{URL}cart.html'
     CHECKOUT_URL = f'{URL}checkout-step-one.html'
 
+    class Timeout:
+        SMALL = 5000
+        MEDIUM = 10000
+        LARGE = 15000
+
     auth_page_title = 'Swag Labs'
     app_title = 'Swag Labs'
 

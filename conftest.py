@@ -1,6 +1,8 @@
 import pytest
 from playwright.sync_api import sync_playwright
 from data.config import Config
+from data.consts import Consts
+from helpers.login_user import login_user
 
 
 @pytest.fixture(scope='class')
@@ -27,3 +29,9 @@ def browser(request):
         context.close()
     browser.close()
     playwright.stop()
+
+
+@pytest.fixture(scope='function')
+def login(browser):
+    login_user(browser, Consts.standard_user['name'], Consts.standard_user['password'])
+    yield

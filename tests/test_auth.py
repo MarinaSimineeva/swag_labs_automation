@@ -30,8 +30,8 @@ def test_auth_not_passed_locked_user(browser):
 @allure.title('Проверяем ошибку авторизации без заполнения username, password')
 @pytest.mark.negative
 def test_auth_not_passed_with_empty_fields(browser):
-    browser.goto(Consts.URL)
     auth_page = AuthPage(browser)
+    auth_page.go_to(Consts.URL)
 
     with allure.step('Кликаем "авторизоваться", не заполняя username и password'):
         auth_page.login_btn.click()
@@ -80,9 +80,9 @@ def test_auth_not_passed_password_errors(browser, username, password):
 @allure.title('Текст и отображение заголовка экрана авторизации')
 @pytest.mark.positive
 def test_auth_page_title(browser):
-    browser.goto(Consts.URL)
     auth_page = AuthPage(browser)
+    auth_page.go_to(Consts.URL)
 
     with allure.step(f'Проверяем отображение и текст заголовка экрана авторизации: {Consts.auth_page_title}'):
-        expect(auth_page.auth_title).to_be_visible(visible=True, timeout=12000)
+        expect(auth_page.auth_title).to_be_visible(timeout=Consts.Timeout.SMALL)
         expect(auth_page.auth_title).to_have_text(Consts.auth_page_title)

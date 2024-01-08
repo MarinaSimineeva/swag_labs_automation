@@ -3,3 +3,4 @@ python-decouple
 playwright~=1.40.0
 allure-pytest
 allure-combine
+
